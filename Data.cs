@@ -84,7 +84,54 @@ namespace Spotifly
 
         private static void AddAlbum()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Enter the album details");
+
+            Console.Write("Title: ");
+            string title = Console.ReadLine();
+
+            var songs = new List<Song>();
+            var answer = "";
+            while (answer != "2")
+            {
+                Console.WriteLine("Would you like to add a new song, or use an existing song?\n1: add new\n 2: add existing");
+                answer = Console.ReadLine();
+                if (answer == "1")
+                {
+                    AddArtits();
+                }
+                else if (answer == "2")
+                {
+                    songs = FindSongs();
+                }
+            }
+            Album album = new Album()
+            {
+                Title = title,
+                Songs = songs
+            };
+
+            Albums.Add(album);
+        }
+
+        private static List<Song> FindSongs()
+        {
+            var more = "";
+            var songs = new List<Song>();
+            Console.WriteLine("choose your songs");
+            while (more != "n")
+            {
+                var counter = 0;
+                foreach (var song in Songs)
+                {
+                    counter++;
+                    Console.WriteLine($"{counter}: {song.Title}");
+                }
+                int choice = Convert.ToInt32(Console.ReadLine());
+                songs.Add(Songs[(choice) - 1]);
+                Console.WriteLine("press n if you don't want to add more");
+                more = Console.ReadLine();
+            }
+            return songs;
         }
 
         private static Song AddSong()

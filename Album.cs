@@ -10,7 +10,10 @@ namespace Spotifly
     {
         private string v;
         private List<Song> songs;
-
+        public Album()
+        {
+            
+        }
         public Album(string title, List<Song> songs)
         {
             Title = title;
